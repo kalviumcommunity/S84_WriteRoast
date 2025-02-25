@@ -1,32 +1,31 @@
 require("dotenv").config();
 const express = require("express");
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
+const handwritingRoutes = require("./routes"); // Import routes
 
 const app = express();
 const PORT = 3000;
 
-const client = new MongoClient(process.env.MONGO_URI);
+// Middleware
+app.use(express.json()); // Allows reading JSON data in requests
 
-async function connectDB() {
-    try {
-        await client.connect();
-        console.log("Database connected successfully");
-    } catch (error) {
-        console.error("Database connection failed:", error.message);
-    }
-}
+// Database Connection
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log("Database connected successfully"))
+.catch((error) => console.error("Database connection failed:", error.message));
 
-connectDB();
+// Use Routes
+app.use("/api", handwritingRoutes); // All API routes will be prefixed with `/api`
 
+// Default Route
 app.get("/", (req, res) => {
-    const dbStatus = client.topology?.isConnected() ? "Connected" : "Not Connected";
-    res.send(`<h1>Database Status: ${dbStatus}</h1>`);
+    res.send("<h1>Welcome to WriteRoast API</h1>");
 });
 
-app.get("/ping", (req, res) => {
-    res.send("Pong!");
-});
-
+// Server Listening
 app.listen(PORT, () => {
-    console.log(`Hi, my name is Diven Saini. Server is running at http:localhost://${PORT}`);
+    console.log(`Server is running at http://localhost:${PORT}`);
 });
