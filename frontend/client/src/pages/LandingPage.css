@@ -1,0 +1,256 @@
+/* General Page Styling */
+body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main Container to center everything */
+.main-container {
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    background: linear-gradient(135deg, #333, #444); /* Black/Grey Gradient */
+    color: white;
+    padding: 60px 20px;
+    border-radius: 10px;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Get a Roast Joke Button */
+.hero button {
+    background-color: white;
+    color: #222;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero button:hover {
+    background-color: #222;
+    color: white;
+}
+
+/* Roast Joke Section */
+.roast-joke-section {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Roast Joke Card */
+.roast-joke {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: center;
+}
+
+.roast-joke p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #444;
+}
+
+.roast-joke .author {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Features Section */
+.features {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f0f0f0, #d6d6d6); /* Light grey gradient */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+/* Features Header */
+.features h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.features p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+/* Features Container */
+.features-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+/* Individual Feature Card */
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+/* Feature Card Hover Effect */
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: #444;
+}
+
+/* Feature Card Titles */
+.feature-card h3 {
+    color: #222;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Feature Card Text */
+.feature-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    background: #222;  /* Dark background */
+    color: #ddd;  /* Light text */
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 1rem;
+    margin-top: 50px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Footer Hover Effect */
+footer p {
+    transition: color 0.3s ease-in-out;
+}
+
+footer p:hover {
+    color: #ffffff; /* Brighter text on hover */
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+}
+
+.navbar{
+    height: 70px;
+    width: 1500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #222;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 40%;
+    font-size: 40px;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-links a:hover {
+    color: #0000ff;
+}
+
+.arrow-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.arrow {
+    font-size: 2rem;
+    color: #3c3c3c;
+    animation: bounce 1s infinite alternate ease-in-out;
+}
+
+/* Arrow Bounce Animation */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+    }

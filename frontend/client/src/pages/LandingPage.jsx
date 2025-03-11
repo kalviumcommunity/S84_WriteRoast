@@ -1,21 +1,46 @@
 import React from "react";
-import "../styles/LandingPage.css";
+import "../pages/LandingPage.css";
+import RoastJoke from "../components/RoastJoke";
 
-const LandingPage = () => {
+const LandingPage = ({ onShowJoke, showJoke, joke }) => {
   return (
     <div>
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <div className="logo">WriteRoast</div>
+        <ul className="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
       {/* Hero Section */}
       <section className="hero">
         <h2>Welcome to WriteRoast</h2>
         <p>The best platform to improve your writing skills and get expert feedback.</p>
-        <button>Get Started</button>
+        <button onClick={onShowJoke}>Get a Roast Joke</button>
       </section>
 
+      {/* Roast Joke Section */}
+      {/* Animated Arrow */}
+      {showJoke && (
+       <div className="arrow-container">
+        <span className="arrow">↓</span>
+        </div>
+         )}
+      {showJoke && (
+        <section className="roast-joke-section">
+          <RoastJoke joke={joke} />
+        </section>
+      )}
+
       {/* Features Section */}
-      <section className="features">
+      <section id="features" className="features">
         <h2>Why Choose WriteRoast?</h2>
         <p>Explore the amazing features that make WriteRoast the perfect choice for writers.</p>
-        
+
         <div className="features-container">
           <div className="feature-card">
             <h3>AI-Powered Feedback</h3>
