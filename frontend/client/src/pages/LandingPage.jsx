@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../pages/LandingPage.css";
 import RoastJoke from "../components/RoastJoke";
 
+const API_URL = "http://localhost:3000/api/handwriting"; // Update if needed
+
 const LandingPage = ({ onShowJoke, showJoke, joke }) => {
+  const [entities, setEntities] = useState([]);
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => setEntities(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   return (
     <div>
       {/* Navigation Bar */}
@@ -24,12 +35,11 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
       </section>
 
       {/* Roast Joke Section */}
-      {/* Animated Arrow */}
       {showJoke && (
-       <div className="arrow-container">
-        <span className="arrow">↓</span>
+        <div className="arrow-container">
+          <span className="arrow">↓</span>
         </div>
-         )}
+      )}
       {showJoke && (
         <section className="roast-joke-section">
           <RoastJoke joke={joke} />
@@ -54,6 +64,23 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
             <h3>Community Support</h3>
             <p>Join a thriving community of passionate writers.</p>
           </div>
+        </div>
+      </section>
+
+      {/* Data from Backend */}
+      <section className="database-data">
+        <h2>Recent Handwriting Entries</h2>
+        <div className="entries-container">
+          {entities.length > 0 ? (
+            entities.map((entity) => (
+              <div key={entity._id} className="entry-card">
+                <h3>{entity.title}</h3>
+                <p>{entity.description}</p>
+              </div>
+            ))
+          ) : (
+            <p>Loading or no data found...</p>
+          )}
         </div>
       </section>
 
