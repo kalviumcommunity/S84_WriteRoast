@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../pages/LandingPage.css";
 import RoastJoke from "../components/RoastJoke";
+import { getHandwritingData } from "../services/handwritingService";
 
 const LandingPage = ({ onShowJoke, showJoke, joke }) => {
   const [showAllData, setShowAllData] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [handwritingData, setHandwritingData] = useState([]); // Backend Data
+  
 
   // Sample Random Data
   const dummyData = [
@@ -20,6 +23,17 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("dark-mode", !darkMode);
   };
+
+  const handleGetHandwritingData = async () => {
+    try {
+      const data = await getHandwritingData();
+      setHandwritingData(data);
+    } catch (error) {
+      console.error("Error fetching handwriting data:", error);
+      alert("Failed to load handwriting entries. Check backend or network.");
+    }
+  };
+
 
   return (
     <div className={darkMode ? "dark" : "light"}>
@@ -78,20 +92,34 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
       </section>
 
       {/* Data from Random Dummy Data */}
-      <section className="database-data">
-        <h2>Recent Handwriting Entries</h2>
-        <div className="entries-container">
-          {dummyData.slice(0, 3).map((entity) => (
-            <div key={entity._id} className="entry-card">
-              <h3>{entity.name}</h3>
-              <p>{entity.description}</p>
-            </div>
-          ))}
+      {/* Backend Handwriting Data Section */}
+      <section className="backend-handwriting">
+        <div className = "Handwriting-from-Our-Database">
+        <h2>📜 Handwriting from Our Database</h2>
+        <p>Discover unique handwriting styles from users worldwide.</p>
         </div>
 
-        {/* Button to Show All Data */}
-        <button className="fetch-data-btn" onClick={() => setShowAllData(true)}>Show All Data</button>
+        <button className="get-handwriting-data-btn" onClick={handleGetHandwritingData}>
+          🖋 Load Handwriting Entries
+        </button>
 
+        {/* Display Backend Data */}
+        {handwritingData.length > 0 && (
+          <div className="handwriting-card-section">
+            <div className="handwriting-card-grid">
+              {handwritingData.map((entry, index) => (
+                <div key={index} className="entry-card">
+                  <h3>{entry.name}</h3>
+                  <p><strong>Description:</strong> {entry.description}</p>
+                  <p><strong>created at:</strong> {entry.createdAt}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+        <button className="fetch-data-btn" onClick={() => setShowAllData(true)}>Show More</button>
         {/* Display All Data When Button is Clicked */}
         {showAllData && (
           <section className="all-data-section">
@@ -106,7 +134,6 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
             </div>
           </section>
         )}
-      </section>
 
       {/* Footer */}
       <footer>

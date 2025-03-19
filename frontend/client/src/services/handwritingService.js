@@ -1,13 +1,14 @@
-const API_BASE_URL = "https://s84-writeroast.onrender.com/api"; // Change this to your backend URL
+import axios from "axios";
 
-// Fetch recent handwriting entries
-export async function fetchEntries() {
-    try {
-        const response = await fetch(`${API_BASE_URL}/handwriting`);
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching recent handwriting entries:", error);
-        return [];
-    }
-}
+const API_BASE_URL = "https://s84-writeroast.onrender.com/api"; // Update with your backend URL if different
 
+// Fetch handwriting data from the backend
+export const getHandwritingData = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/handwriting`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching handwriting data:", error);
+    throw error;
+  }
+};
