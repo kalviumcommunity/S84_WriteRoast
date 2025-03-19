@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../pages/LandingPage.css";
 import RoastJoke from "../components/RoastJoke";
 
-const API_URL = "http://localhost:3000/api/handwriting"; // Update if needed
-
 const LandingPage = ({ onShowJoke, showJoke, joke }) => {
-  const [entities, setEntities] = useState([]);
+  const [showAllData, setShowAllData] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    fetch(API_URL)
-      .then((response) => response.json())
-      .then((data) => setEntities(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  // Sample Random Data
+  const dummyData = [
+    { _id: 1, name: "John Doe", description: "Practicing cursive handwriting." },
+    { _id: 2, name: "Jane Smith", description: "Learning calligraphy styles." },
+    { _id: 3, name: "Alex Johnson", description: "Improving signature consistency." },
+    { _id: 4, name: "Emily Brown", description: "Experimenting with artistic fonts." },
+    { _id: 5, name: "Michael Lee", description: "Working on speed and accuracy." }
+  ];
+
+  // Toggle Dark Mode
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle("dark-mode", !darkMode);
+  };
 
   return (
-    <div>
+    <div className={darkMode ? "dark" : "light"}>
       {/* Navigation Bar */}
       <nav className="navbar">
         <div className="logo">WriteRoast</div>
@@ -25,6 +32,9 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+          {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+        </button>
       </nav>
 
       {/* Hero Section */}
@@ -67,21 +77,35 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
         </div>
       </section>
 
-      {/* Data from Backend */}
+      {/* Data from Random Dummy Data */}
       <section className="database-data">
         <h2>Recent Handwriting Entries</h2>
         <div className="entries-container">
-          {entities.length > 0 ? (
-            entities.map((entity) => (
-              <div key={entity._id} className="entry-card">
-                <h3>{entity.title}</h3>
-                <p>{entity.description}</p>
-              </div>
-            ))
-          ) : (
-            <p>Loading or no data found...</p>
-          )}
+          {dummyData.slice(0, 3).map((entity) => (
+            <div key={entity._id} className="entry-card">
+              <h3>{entity.name}</h3>
+              <p>{entity.description}</p>
+            </div>
+          ))}
         </div>
+
+        {/* Button to Show All Data */}
+        <button className="fetch-data-btn" onClick={() => setShowAllData(true)}>Show All Data</button>
+
+        {/* Display All Data When Button is Clicked */}
+        {showAllData && (
+          <section className="all-data-section">
+            <h2>All Handwriting</h2>
+            <div className="all-entries-container">
+              {dummyData.map((entity) => (
+                <div key={entity._id} className="entry-card">
+                  <h3>{entity.name}</h3>
+                  <p>{entity.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </section>
 
       {/* Footer */}
