@@ -11,6 +11,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); // Allows reading JSON data in requests
 app.use(cors()); // Enables CORS for frontend requests
 
+app.use(cors({
+    origin: ["http://localhost:3000", "https://write-roast.netlify.app/"], // Replace with your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"]
+  }));
+  
+
 // Database Connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
