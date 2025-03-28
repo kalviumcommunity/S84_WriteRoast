@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link
 import "../pages/LandingPage.css";
 import RoastJoke from "../components/RoastJoke";
 import { getHandwritingData } from "../services/handwritingService";
@@ -8,8 +9,6 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
   const [darkMode, setDarkMode] = useState(false);
   const [handwritingData, setHandwritingData] = useState([]); // Backend Data
   
-
-  // Sample Random Data
   const dummyData = [
     { _id: 1, name: "John Doe", description: "Practicing cursive handwriting." },
     { _id: 2, name: "Jane Smith", description: "Learning calligraphy styles." },
@@ -18,7 +17,6 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
     { _id: 5, name: "Michael Lee", description: "Working on speed and accuracy." }
   ];
 
-  // Toggle Dark Mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("dark-mode", !darkMode);
@@ -34,17 +32,17 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
     }
   };
 
-
   return (
     <div className={darkMode ? "dark" : "light"}>
       {/* Navigation Bar */}
       <nav className="navbar">
+          <li><Link to="/add-entity" className="add-entity-btn">➕ Add Entity</Link></li> {/* New Link Added */}
         <div className="logo">WriteRoast</div>
         <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/features">Features</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
         <button className="dark-mode-toggle" onClick={toggleDarkMode}>
           {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
@@ -91,13 +89,10 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
         </div>
       </section>
 
-      {/* Data from Random Dummy Data */}
       {/* Backend Handwriting Data Section */}
       <section className="backend-handwriting">
-        <div className = "Handwriting-from-Our-Database">
         <h2>📜 Handwriting from Our Database</h2>
         <p>Discover unique handwriting styles from users worldwide.</p>
-        </div>
 
         <button className="get-handwriting-data-btn" onClick={handleGetHandwritingData}>
           🖋 Load Handwriting Entries
@@ -111,7 +106,7 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
                 <div key={index} className="entry-card">
                   <h3>{entry.name}</h3>
                   <p><strong>Description:</strong> {entry.description}</p>
-                  <p><strong>created at:</strong> {entry.createdAt}</p>
+                  <p><strong>Created at:</strong> {entry.createdAt}</p>
                 </div>
               ))}
             </div>
@@ -119,21 +114,20 @@ const LandingPage = ({ onShowJoke, showJoke, joke }) => {
         )}
       </section>
 
-        <button className="fetch-data-btn" onClick={() => setShowAllData(true)}>Show More</button>
-        {/* Display All Data When Button is Clicked */}
-        {showAllData && (
-          <section className="all-data-section">
-            <h2>All Handwriting</h2>
-            <div className="all-entries-container">
-              {dummyData.map((entity) => (
-                <div key={entity._id} className="entry-card">
-                  <h3>{entity.name}</h3>
-                  <p>{entity.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+      <button className="fetch-data-btn" onClick={() => setShowAllData(true)}>Show More</button>
+      {showAllData && (
+        <section className="all-data-section">
+          <h2>All Handwriting</h2>
+          <div className="all-entries-container">
+            {dummyData.map((entity) => (
+              <div key={entity._id} className="entry-card">
+                <h3>{entity.name}</h3>
+                <p>{entity.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer>

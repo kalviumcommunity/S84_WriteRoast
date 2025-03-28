@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import RoastJoke from "./components/RoastJoke";
+import AddEntity from "./pages/AddEntity"; // Assuming this is your Add Entity page
 
-function App() {
-  const [showJoke, setShowJoke] = useState(false);
-
-  const joke = {
-    content: "You're so slow, even a snail sent you a 'hurry up' message!",
-    author: "John Doe",
-    target: "Lazy Larry",
-  };
-
+const App = () => {
   return (
-    <div>
-      <LandingPage onShowJoke={() => setShowJoke(true)} showJoke={showJoke} joke={joke} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/add-entity" element={<AddEntity />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

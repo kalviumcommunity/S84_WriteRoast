@@ -1,0 +1,45 @@
+.add-entity-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.add-entity-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.entity-list-title {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #444;
+}
+
+.entity-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.entity-item {
+  padding: 12px;
+  background: #f8f9fa;
+  margin: 8px auto;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: 0.3s ease-in-out;
+}
+
+.entity-item:hover {
+  background: #e9ecef;
+}
+
+.no-entities-message {
+  font-size: 16px;
+  color: #777;
+  margin-top: 10px;
+}

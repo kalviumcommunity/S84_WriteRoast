@@ -193,29 +193,49 @@ footer p:hover {
     }
 }
 
-.navbar{
+.navbar {
     height: 70px;
     width: 1500px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
     background-color: #222;
     color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
+/* Align Add Button to the Left */
+.add-entity-btn {
+    margin-right: auto; /* Push everything else to the right */
+    background: #494b4a;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
     font-weight: bold;
-    margin-left: 40%;
-    font-size: 40px;
+    transition: background 0.3s ease;
 }
 
+.add-entity-btn:hover {
+    background: #616563;
+}
+
+/* Center the Logo */
+.navbar .logo {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/* Align Navigation Links to the Right */
 .navbar .nav-links {
-    list-style: none;
     display: flex;
     gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar .nav-links li {
@@ -232,6 +252,7 @@ footer p:hover {
 .navbar .nav-links a:hover {
     color: #0000ff;
 }
+
 
 .arrow-container {
     display: flex;
@@ -421,7 +442,7 @@ footer p:hover {
 /* Dark Mode Support */
 body.dark-mode {
     background-color: #1e1e1e;
-    color: #f5f5f5;
+    color: #ffffff;
 }
 
 /* Navbar */
@@ -596,3 +617,20 @@ body.dark-mode {
 .entry-card:hover {
     transform: translateY(-5px);
 }
+
+.add-entity-btn {
+    background: #494b4a; /* Green color */
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  
+  .add-entity-btn:hover {
+    background: #000000; /* Darker green */
+  }
+
+  
+  
