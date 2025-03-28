@@ -1,0 +1,100 @@
+/* Form Container */
+.form-container {
+  max-width: 650px; /* Slightly larger for better spacing */
+  width: 90%;
+  margin: 80px auto; /* Increased top margin for better alignment */
+  padding: 35px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Form Title */
+.form-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Form Layout */
+.entity-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px; /* Increased gap for better spacing */
+}
+
+/* Input Fields */
+.form-input {
+  width: 96%; /* Slightly wider for better usability */
+  padding: 16px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  font-size: 18px;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+.form-button {
+  width: 65%;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.form-button:hover {
+  background: #0056b3;
+}
+
+/* Back Button - Now Fixed at Top-Left */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #000000;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.back-button:hover {
+  background: #3f3d3d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-container {
+    width: 95%;
+    padding: 25px;
+  }
+
+  .form-button {
+    width: 80%;
+  }
+
+  .back-button {
+    top: 10px;
+    left: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
